@@ -1,0 +1,28 @@
+services:
+  marinara:
+    build:
+      context: .
+    image: marinara-patched:lite
+    container_name: marinara
+    init: true
+    ports:
+      - "127.0.0.1:7860:7860"
+    volumes:
+      - marinara-data:/app/data
+    environment:
+      NODE_OPTIONS: "--max-old-space-size=768"
+      NODE_ENV: production
+      DATA_DIR: /app/data
+      FILE_STORAGE_DIR: /app/data/storage
+      MARINARA_DOCKER: "true"
+      TZ: Asia/Seoul
+      ENCRYPTION_KEY: "${ENCRYPTION_KEY}"
+      ADMIN_SECRET: "${ADMIN_SECRET}"
+      ENABLE_EXTERNAL_EXTENSIONS: "${ENABLE_EXTERNAL_EXTENSIONS}"
+      BASIC_AUTH_USER: "${BASIC_AUTH_USER}"
+      BASIC_AUTH_PASS: "${BASIC_AUTH_PASS}"
+      TRUSTED_HOSTS: "${TRUSTED_HOSTS}"
+      CSRF_TRUSTED_ORIGINS: "${CSRF_TRUSTED_ORIGINS}"
+    restart: unless-stopped
+volumes:
+  marinara-data:
