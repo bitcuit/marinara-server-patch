@@ -10,7 +10,7 @@ services:
     volumes:
       - marinara-data:/app/data
     environment:
-      NODE_OPTIONS: "--max-old-space-size=768"
+      NODE_OPTIONS: "--max-old-space-size=1400"
       NODE_ENV: production
       DATA_DIR: /app/data
       FILE_STORAGE_DIR: /app/data/storage
